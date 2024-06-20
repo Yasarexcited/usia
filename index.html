@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kategori Usia</title>
+</head>
+<body>
+
+<h2>Masukkan Tahun Kelahiran Anda</h2>
+
+<form id="ageForm">
+  <label for="birthYear">Tahun Kelahiran:</label>
+  <input type="number" id="birthYear" name="birthYear" required>
+  <button type="submit">Hitung</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+  document.getElementById('ageForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    let birthYear = document.getElementById('birthYear').value;
+    let currentYear = new Date().getFullYear();
+    let age = currentYear - birthYear;
+
+    let category = '';
+    if (age < 0) {
+      category = 'Anda belum lahir!';
+    } else if (age <= 5) {
+      category = 'Balita';
+    } else if (age <= 12) {
+      category = 'Anak-anak';
+    } else if (age <= 18) {
+      category = 'Remaja';
+    } else if (age <= 60) {
+      category = 'Dewasa';
+    } else {
+      category = 'Lanjut usia';
+    }
+
+    document.getElementById('result').innerHTML = `Usia Anda sekitar ${age} tahun. Anda termasuk dalam kategori ${category}.`;
+  });
+</script>
+
+</body>
+</html>
